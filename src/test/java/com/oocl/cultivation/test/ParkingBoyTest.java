@@ -46,7 +46,7 @@ class ParkingBoyTest {
         //when
         Car getsCar = parkingBoy.getOutCar(ticket);
         //then
-        assertEquals(getsCar, car);
+        assertEquals(getsCar, null);
     }
 
 
