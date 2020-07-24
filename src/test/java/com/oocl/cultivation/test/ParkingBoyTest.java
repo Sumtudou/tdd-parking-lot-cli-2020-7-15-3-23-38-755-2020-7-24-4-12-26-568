@@ -22,17 +22,15 @@ class ParkingBoyTest {
         //then
         assertNotNull(ticket);
     }
-//
-//    @Test
-//    void should_return_car_when_getCar_given_ticket() {
-//
-//        ParkingBoy parkingBoy = new ParkingBoy();
-//        Ticket ticket = new Ticket();
-//
-//       // Car ticketCar = ticket.getCar();
-//
-//        Car car = parkingBoy.getCar(ticket);
-//
-//        assertEquals(ticketCar, car);
-//    }
+
+    @Test
+    void should_return_car_when_getCar_given_ticket() {
+        //given
+        Car car = new Car("C001");
+        ParkingBoy parkingBoy = new ParkingBoy();
+        Ticket ticket = parkingBoy.parkCar(car,"T001");
+        Car getsCar = parkingBoy.getCar(ticket);
+
+        assertEquals(getsCar, car);
+    }
 }

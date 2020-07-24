@@ -9,6 +9,13 @@ public class Ticket {
         this.token = token;
     }
 
+    public String getCarId() {
+        return carId;
+    }
+
+    public String getToken() {
+        return token;
+    }
     //    public Car getCar() {
 //        return null;
 //    }
