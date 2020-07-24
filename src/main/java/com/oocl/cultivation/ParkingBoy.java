@@ -8,8 +8,8 @@ public class ParkingBoy {
     public Ticket parkCar(Car car, String token) {
         return new Ticket(car, token);
     }
-    public Car getCar(Ticket ticket){
-        return null;
+    public Car getOutCar(Ticket ticket){
+        return ticket.getCar();
     }
 
 

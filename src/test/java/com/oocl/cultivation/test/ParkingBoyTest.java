@@ -29,7 +29,7 @@ class ParkingBoyTest {
         Car car = new Car("C001");
         ParkingBoy parkingBoy = new ParkingBoy();
         Ticket ticket = parkingBoy.parkCar(car,"T001");
-        Car getsCar = parkingBoy.getCar(ticket);
+        Car getsCar = parkingBoy.getOutCar(ticket);
 
         assertEquals(getsCar, car);
     }
