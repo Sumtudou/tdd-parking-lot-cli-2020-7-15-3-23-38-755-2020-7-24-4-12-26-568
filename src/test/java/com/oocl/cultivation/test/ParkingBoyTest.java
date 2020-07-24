@@ -41,12 +41,13 @@ class ParkingBoyTest {
         //given
         Car car = new Car("C001");
         ParkingBoy parkingBoy = new ParkingBoy();
+        //when
         Ticket ticket = new Ticket();
 
-        //when
-        Car getsCar = parkingBoy.getOutCar(ticket);
+        Car gotCar = parkingBoy.getOutCar(ticket);
+
         //then
-        assertEquals(getsCar, null);
+        assertEquals(null, gotCar);
     }
 
 
