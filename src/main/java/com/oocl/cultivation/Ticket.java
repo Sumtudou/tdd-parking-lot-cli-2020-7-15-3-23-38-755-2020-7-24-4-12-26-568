@@ -10,6 +10,11 @@ public class Ticket {
         this.car = car;
     }
 
+    public Ticket(){
+
+    }
+
+
     public String getCarId() {
         return carId;
     }

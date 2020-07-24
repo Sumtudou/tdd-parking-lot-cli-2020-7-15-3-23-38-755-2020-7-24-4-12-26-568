@@ -29,8 +29,28 @@ class ParkingBoyTest {
         Car car = new Car("C001");
         ParkingBoy parkingBoy = new ParkingBoy();
         Ticket ticket = parkingBoy.parkCar(car,"T001");
-        Car getsCar = parkingBoy.getOutCar(ticket);
 
+        //when
+        Car getsCar = parkingBoy.getOutCar(ticket);
+        //then
         assertEquals(getsCar, car);
     }
+
+    @Test
+    void should_return_null_when_getOutCar_given_wrong_ticket() {
+        //given
+        Car car = new Car("C001");
+        ParkingBoy parkingBoy = new ParkingBoy();
+        Ticket ticket = new Ticket();
+
+        //when
+        Car getsCar = parkingBoy.getOutCar(ticket);
+        //then
+        assertEquals(getsCar, car);
+    }
+
+
+
+
+
 }
