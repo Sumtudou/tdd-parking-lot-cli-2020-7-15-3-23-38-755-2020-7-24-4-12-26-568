@@ -15,21 +15,21 @@ class ParkingBoyTest {
     void should_return_ticket_when_parkCar_given_1car() {
         //given
         ParkingBoy parkingBoy = new ParkingBoy();
-        Car car = new Car();
+        Car car = new Car("C001");
         //when
-        Ticket ticket = parkingBoy.parkCar(car);
+        Ticket ticket = parkingBoy.parkCar(car,"T001");
 
         //then
         assertNotNull(ticket);
     }
-
-
+//
 //    @Test
 //    void should_return_car_when_getCar_given_ticket() {
 //
 //        ParkingBoy parkingBoy = new ParkingBoy();
 //        Ticket ticket = new Ticket();
-//        Car ticketCar = ticket.getCar();
+//
+//       // Car ticketCar = ticket.getCar();
 //
 //        Car car = parkingBoy.getCar(ticket);
 //
