@@ -20,13 +20,19 @@ public class ParkingBoy {
 
 
     public Ticket parkCar(Car car, String token) {
+        Ticket errTicket = new Ticket();
         Set<Car> parkingLotSet = parkingLot.getParkingLotSet();
         if (car == null || token == null)
             return null;
-        if (parkingLotSet.size() < parkingLot.getMaxSize() && !parkingLotSet.contains(car)) {
-            parkingLotSet.add(car);
-            parkingLot.setParkingLotSet(parkingLotSet);
-            return new Ticket(car, token);
+        if (parkingLotSet.size() < parkingLot.getMaxSize()) {
+            if (!parkingLotSet.contains(car)) {
+                parkingLotSet.add(car);
+                parkingLot.setParkingLotSet(parkingLotSet);
+                return new Ticket(car, token);
+            }
+        }else{
+            errTicket.setErrMsg("Not enough position.");
+            return errTicket;
         }
         return null;
     }
