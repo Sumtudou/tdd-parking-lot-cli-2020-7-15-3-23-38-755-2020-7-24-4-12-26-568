@@ -10,6 +10,7 @@ public class ParkingBoy {
     private ParkingLot parkingLot = null;
     private List<ParkingLot> parkingLotList;
 
+
     public ParkingBoy(Integer maxSize) {
         buildParkingLot(maxSize);
     }
