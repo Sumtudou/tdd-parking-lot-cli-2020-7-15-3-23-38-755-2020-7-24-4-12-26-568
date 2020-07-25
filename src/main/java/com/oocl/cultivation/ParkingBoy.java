@@ -33,8 +33,10 @@ public class ParkingBoy {
     }
 
     public Car getOutCar(Ticket ticket) {
-        if (ticket == null || ticket.getUsed()){
-            return null;
+        Car errorCar = new Car();
+        if (ticket == null || ticket.getUsed() || ticket.getCar() == null){
+            errorCar.setErrorMsg("Unrecognized parking ticket.");
+            return  errorCar;
         }
         Car car = ticket.getCar();
         Set<Car> parkingLotSet = parkingLot.getParkingLotSet();
@@ -42,8 +44,10 @@ public class ParkingBoy {
             parkingLotSet.remove(car);
             parkingLot.setParkingLotSet(parkingLotSet);
             return car;
+        }else{
+            errorCar.setErrorMsg("This car has been stolen");
+            return errorCar;
         }
-        return null;
 
     }
 
