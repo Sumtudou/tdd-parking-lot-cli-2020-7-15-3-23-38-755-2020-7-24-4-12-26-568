@@ -2,6 +2,7 @@ package com.oocl.cultivation.test;
 
 import com.oocl.cultivation.ParkingBoy;
 import com.oocl.cultivation.Car;
+import com.oocl.cultivation.ParkingLot;
 import com.oocl.cultivation.Ticket;
 
 import org.junit.jupiter.api.Test;
@@ -98,20 +99,22 @@ class ParkingBoyTest {
         Car car11 = new Car("C011");
 
         ParkingBoy parkingBoy = new ParkingBoy();
+        ParkingLot parkingLot = new ParkingLot(10);
         //when
-        Ticket ticket1 = parkingBoy.parkCar(car1,"T001");
-        Ticket ticket2 = parkingBoy.parkCar(car2,"T002");
-        Ticket ticket3 = parkingBoy.parkCar(car3,"T003");
-        Ticket ticket4 = parkingBoy.parkCar(car4,"T004");
-        Ticket ticket5 = parkingBoy.parkCar(car5,"T005");
-        Ticket ticket6 = parkingBoy.parkCar(car6,"T006");
-        Ticket ticket7 = parkingBoy.parkCar(car7,"T007");
-        Ticket ticket8 = parkingBoy.parkCar(car8,"T008");
-        Ticket ticket9 = parkingBoy.parkCar(car9,"T009");
-        Ticket ticket10 = parkingBoy.parkCar(car10,"T010");
-        Ticket ticket11 = parkingBoy.parkCar(car11,"T011");
+        Ticket ticket1 = parkingLot.lotParkCar(car1,"T001");
+        Ticket ticket2 = parkingLot.lotParkCar(car2,"T002");
+        Ticket ticket3 = parkingLot.lotParkCar(car3,"T003");
+        Ticket ticket4 = parkingLot.lotParkCar(car4,"T004");
+        Ticket ticket5 = parkingLot.lotParkCar(car5,"T005");
+        Ticket ticket6 = parkingLot.lotParkCar(car6,"T006");
+        Ticket ticket7 = parkingLot.lotParkCar(car7,"T007");
+        Ticket ticket8 = parkingLot.lotParkCar(car8,"T008");
+        Ticket ticket9 = parkingLot.lotParkCar(car9,"T009");
+        Ticket ticket10 = parkingLot.lotParkCar(car10,"T010");
+        Ticket ticket11 = parkingLot.lotParkCar(car11,"T011");
 
         //then
+        assertNotNull(ticket10);
         assertEquals(null, ticket11);
     }
 
