@@ -43,6 +43,7 @@ public class ParkingBoy {
         if(parkingLotSet.contains(car)){  //this car is in parkingLot
             parkingLotSet.remove(car);
             parkingLot.setParkingLotSet(parkingLotSet);
+            ticket.setUsed(true);
             return car;
         }else{
             errorCar.setErrorMsg("This car has been stolen");
