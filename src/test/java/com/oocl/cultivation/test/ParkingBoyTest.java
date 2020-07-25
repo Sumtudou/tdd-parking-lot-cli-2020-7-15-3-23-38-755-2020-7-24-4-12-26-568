@@ -51,7 +51,22 @@ class ParkingBoyTest {
     }
 
     @Test
-    void should_return_null_when_getOutCar_given_null() {
+    void should_return_null_when_getOutCar_given_used_ticket() {
+        //given
+        Car car = new Car("C001");
+        ParkingBoy parkingBoy = new ParkingBoy();
+        Ticket ticket = parkingBoy.parkCar(car,"T001");
+        //when
+
+        Car gotCar = parkingBoy.getOutCar(ticket);
+        Car gotAgainCar = parkingBoy.getOutCar(ticket);
+
+        //then
+        assertEquals(null, gotAgainCar);
+    }
+
+    @Test
+    void should_return_null_when_getOutCar_given_usedTicket() {
         //given
         Car car = new Car("C001");
         ParkingBoy parkingBoy = new ParkingBoy();

@@ -1,16 +1,18 @@
 package com.oocl.cultivation;
 
 public class Ticket {
-    private String carId;
-    private String token;
-    private Car car;
+    private String carId = null;
+    private String token = null;
+    private Car car = null;
+    private Boolean isUsed = false;
+
     public Ticket(Car car, String token) {
         this.carId = car.getId();
         this.token = token;
         this.car = car;
     }
 
-    public Ticket(){
+    public Ticket() {
 
     }
 
@@ -24,6 +26,10 @@ public class Ticket {
     }
 
     public Car getCar() {
-        return car;
+        if (!this.isUsed && this.car != null){
+            isUsed = true;
+            return car;
+        }
+        return null;
     }
 }
