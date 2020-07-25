@@ -50,7 +50,19 @@ class ParkingBoyTest {
         assertEquals(null, gotCar);
     }
 
+    @Test
+    void should_return_null_when_getOutCar_given_null() {
+        //given
+        Car car = new Car("C001");
+        ParkingBoy parkingBoy = new ParkingBoy();
+        //when
+        Ticket ticket = new Ticket();
 
+        Car gotCar = parkingBoy.getOutCar(null);
+
+        //then
+        assertEquals(null, gotCar);
+    }
 
 
 
