@@ -27,6 +27,7 @@ public class Ticket {
 
     public Car getCar() {
         if (!this.isUsed && this.car != null){
+
             isUsed = true;
             return car;
         }
