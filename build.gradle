@@ -26,7 +26,9 @@ dependencies {
 
     // Use JUnit Jupiter Engine for testing.
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.6.2'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.6.2'
 
+    
     testCompile "org.mockito:mockito-core:3.4.0"
 }
 

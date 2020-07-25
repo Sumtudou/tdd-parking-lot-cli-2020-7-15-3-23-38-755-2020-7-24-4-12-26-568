@@ -1,15 +1,12 @@
 package com.oocl.cultivation;
 
-import java.util.Comparator;
-import java.util.Set;
+public class SuperSmartParkingBoy extends ParkingBoy{
 
-public class SmartParkingBoy extends ParkingBoy {
-
-    public SmartParkingBoy(Integer maxSize) {
+    public SuperSmartParkingBoy(Integer maxSize) {
         super(maxSize);
     }
 
-    public SmartParkingBoy(Integer[] maxSizeArr) {
+    public SuperSmartParkingBoy(Integer[] maxSizeArr) {
         super(maxSizeArr);
     }
 
@@ -18,7 +15,7 @@ public class SmartParkingBoy extends ParkingBoy {
         // Set<Car> parkingLotSet = parkingLot.getParkingLotSet();
         if (car == null || token == null)
             return null;
-        int maxSpaceParkingLotIndex = getMaxEmptyParkingLotIndex();
+        int maxSpaceParkingLotIndex = getMaxEmptyRateParkingLotIndex();
         if (maxSpaceParkingLotIndex == -1) {
             errTicket.setErrMsg("Not enough position.");
         } else {
@@ -30,21 +27,19 @@ public class SmartParkingBoy extends ParkingBoy {
         return null;
     }
 
-
-    public Integer getMaxEmptyParkingLotIndex() {
-        int maxSpaceNum = -1;
+    public Integer getMaxEmptyRateParkingLotIndex() {
+        double maxSpaceNumRate = -1;
         int index = -1;
         for (int i = 0; i < parkingLotList.size(); i++) {
-            int currentSize = parkingLotList.get(i).getMaxSize() - parkingLotList.get(i).getParkingLotSet().size();
-            if (currentSize > maxSpaceNum) {
+            double currentSizeRate = 1 - (double)parkingLotList.get(i).getParkingLotSet().size()/parkingLotList.get(i).getMaxSize();
+            //System.out.printf("%d   %f\n",i,currentSizeRate);
+            if (currentSizeRate > maxSpaceNumRate) {
                 index = i;
-                maxSpaceNum = currentSize;
+                maxSpaceNumRate = currentSizeRate;
             }
         }
-        if (maxSpaceNum == 0)
+        if (Math.abs(maxSpaceNumRate)< 0.001)
             return -1;
         return index;
-
     }
-
 }
