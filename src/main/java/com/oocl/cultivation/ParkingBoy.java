@@ -1,14 +1,12 @@
 package com.oocl.cultivation;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.lang.reflect.Array;
+import java.util.*;
 
 public class ParkingBoy {
 
     private ParkingLot parkingLot = null;
-    private List<ParkingLot> parkingLotList;
+    protected List<ParkingLot> parkingLotList;
 
 
     public ParkingBoy(Integer maxSize) {
@@ -28,9 +26,9 @@ public class ParkingBoy {
 
     public void printParkingLotList() {
         int index = 1;
-        for(ParkingLot parkingLot:parkingLotList){
+        for (ParkingLot parkingLot : parkingLotList) {
             System.out.printf("No %d parkingLot has %d car , maxSize is %d\n",
-                index++,parkingLot.getParkingLotSet().size(),parkingLot.getMaxSize());
+                    index++, parkingLot.getParkingLotSet().size(), parkingLot.getMaxSize());
         }
         System.out.println("=================");
     }
@@ -69,10 +67,13 @@ public class ParkingBoy {
                 return errTicket;
             }
             parkingLotIndex++;
-
         }
         return null;
     }
+
+//    public int compareSpaceFirst(ParkingLot parkingLot2) {
+//        return 1;
+//    }
 
 
     public Ticket parkCar(Car car, String token) {
@@ -116,6 +117,5 @@ public class ParkingBoy {
             return errorCar;
         }
     }
-
 
 }
