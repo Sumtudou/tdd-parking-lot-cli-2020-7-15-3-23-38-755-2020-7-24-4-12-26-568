@@ -11,13 +11,20 @@ public class ParkingLot {
         this.maxSize = maxSize;
     }
 
-    public Ticket lotParkCar(Car car, String token) {
-        if(car == null || token == null)
-            return null;
-        if (parkingLotSet.size() < maxSize && !parkingLotSet.contains(car)) {
-            parkingLotSet.add(car);
-            return new Ticket(car, token);
-        }
-        return null;
+    public Set<Car> getParkingLotSet() {
+        return parkingLotSet;
     }
+
+    public Integer getMaxSize() {
+        return maxSize;
+    }
+
+    public void setParkingLotSet(Set<Car> parkingLotSet) {
+        this.parkingLotSet = parkingLotSet;
+    }
+
+    public void setMaxSize(Integer maxSize) {
+        this.maxSize = maxSize;
+    }
+
 }

@@ -11,11 +11,8 @@ public class Ticket {
         this.token = token;
         this.car = car;
     }
-
     public Ticket() {
-
     }
-
 
     public String getCarId() {
         return carId;
@@ -25,12 +22,12 @@ public class Ticket {
         return token;
     }
 
-    public Car getCar() {
-        if (!this.isUsed && this.car != null){
-
-            isUsed = true;
-            return car;
-        }
-        return null;
+    public Boolean getUsed() {
+        return isUsed;
     }
+
+    public Car getCar() {
+        return car;
+    }
+
 }
