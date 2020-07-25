@@ -42,7 +42,6 @@ class ParkingBoyTest05 {
         assertEquals(3, ticket3.getParkingLotId());
         assertEquals(2, ticket4.getParkingLotId());
 
-
     }
 
 

@@ -27,4 +27,9 @@ public class ParkingLot {
         this.maxSize = maxSize;
     }
 
+    public  Set<Car> parkLotSetInACar(Car car){
+        this.parkingLotSet.add(car);
+        return parkingLotSet;
+    }
+
 }

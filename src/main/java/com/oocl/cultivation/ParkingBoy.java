@@ -53,8 +53,10 @@ public class ParkingBoy {
             Set<Car> parkingLotSetItem = parkingLot.getParkingLotSet();
             if (parkingLotSetItem.size() < parkingLot.getMaxSize()) {
                 if (!parkingLotSetItem.contains(car)) {
-                    parkingLotSetItem.add(car);
-                    parkingLot.setParkingLotSet(parkingLotSetItem);
+                    //parkingLotSetItem.add(car);
+                    //parkingLot.setParkingLotSet(parkingLotSetItem);
+
+                    parkingLot.parkLotSetInACar(car);
                     return new Ticket(car, token, parkingLotIndex);
                 } else {
                     errTicket.setErrMsg("This car has been parked");
@@ -70,10 +72,6 @@ public class ParkingBoy {
         }
         return null;
     }
-
-//    public int compareSpaceFirst(ParkingLot parkingLot2) {
-//        return 1;
-//    }
 
 
     public Ticket parkCar(Car car, String token) {
