@@ -1,6 +1,6 @@
 package com.oocl.cultivation;
 
-public class Ticket {
+public class Ticket extends Message{
     private String carId = null;
     private String token = null;
     private Car car = null;
