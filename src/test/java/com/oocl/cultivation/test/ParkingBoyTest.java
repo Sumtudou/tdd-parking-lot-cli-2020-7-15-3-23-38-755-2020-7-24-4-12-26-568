@@ -118,6 +118,32 @@ class ParkingBoyTest {
         assertEquals(null, ticket11);
     }
 
+    @Test
+    void should_return_null_when_parkCar_given_parked_car() {
+        //given
+        Car car = new Car("C001");
+        ParkingBoy parkingBoy = new ParkingBoy();
+        ParkingLot parkingLot = new ParkingLot(10);
+
+        //when
+        Ticket ticket = parkingLot.lotParkCar(car,"T001");
+        Ticket ticket1 = parkingLot.lotParkCar(car,"T001");
+
+        //then
+        assertEquals(null, ticket1);
+    }
+
+    @Test
+    void should_return_null_when_parkCar_null_car() {
+        //given
+        ParkingLot parkingLot = new ParkingLot(10);
+        //when
+        Ticket ticket = parkingLot.lotParkCar(null,"T001");
+
+        //then
+        assertEquals(null, ticket);
+    }
+
 
 
 }
