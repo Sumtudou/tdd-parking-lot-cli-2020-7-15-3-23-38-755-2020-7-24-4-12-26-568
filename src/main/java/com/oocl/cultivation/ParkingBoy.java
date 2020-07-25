@@ -10,6 +10,8 @@ public class ParkingBoy {
     }
 
     public Car getOutCar(Ticket ticket) {
+        if (ticket == null)
+            return null;
         if (ticket.getCar() != null)
             return ticket.getCar();
         return null;
