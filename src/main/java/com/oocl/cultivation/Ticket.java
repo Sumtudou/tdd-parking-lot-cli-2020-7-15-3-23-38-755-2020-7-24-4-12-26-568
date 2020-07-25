@@ -30,4 +30,7 @@ public class Ticket {
         return car;
     }
 
+    public void setUsed(Boolean used) {
+        isUsed = used;
+    }
 }
