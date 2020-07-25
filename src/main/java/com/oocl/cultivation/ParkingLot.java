@@ -12,6 +12,8 @@ public class ParkingLot {
     }
 
     public Ticket lotParkCar(Car car, String token) {
+        if(car == null || token == null)
+            return null;
         if (parkingLotSet.size() < maxSize && !parkingLotSet.contains(car)) {
             parkingLotSet.add(car);
             return new Ticket(car, token);
