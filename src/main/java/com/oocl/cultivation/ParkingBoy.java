@@ -1,21 +1,76 @@
 package com.oocl.cultivation;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class ParkingBoy {
 
     private ParkingLot parkingLot = null;
-
+    private List<ParkingLot> parkingLotList;
 
     public ParkingBoy(Integer maxSize) {
         buildParkingLot(maxSize);
     }
 
+    public ParkingBoy(Integer[] maxSizeArr) {
+        parkingLotList = new ArrayList<>();
+        for (Integer maxSize : maxSizeArr) {
+            parkingLotList.add(new ParkingLot(maxSize));
+        }
+    }
+
+    public List<ParkingLot> getParkingLotList() {
+        return parkingLotList;
+    }
+
+    public void printParkingLotList() {
+        int index = 1;
+        for(ParkingLot parkingLot:parkingLotList){
+            System.out.printf("No %d parkingLot has %d car , maxSize is %d\n",
+                index++,parkingLot.getParkingLotSet().size(),parkingLot.getMaxSize());
+        }
+        System.out.println("=================");
+    }
+
+    public void setParkingLotList(List<ParkingLot> parkingLotList) {
+        this.parkingLotList = parkingLotList;
+    }
 
     public ParkingLot buildParkingLot(Integer maxSize) {
         this.parkingLot = new ParkingLot(maxSize);
         return parkingLot;
+    }
+
+    public Ticket notCleverParkCar(Car car, String token) {
+        Ticket errTicket = new Ticket();
+        // Set<Car> parkingLotSet = parkingLot.getParkingLotSet();
+        if (car == null || token == null)
+            return null;
+        Integer parkingLotIndex = 1;
+        for (ParkingLot parkingLot : parkingLotList) {
+            //every ParkingLot's space SetItem
+            Set<Car> parkingLotSetItem = parkingLot.getParkingLotSet();
+            if (parkingLotSetItem.size() < parkingLot.getMaxSize()) {
+                if (!parkingLotSetItem.contains(car)) {
+                    parkingLotSetItem.add(car);
+                    parkingLot.setParkingLotSet(parkingLotSetItem);
+                    return new Ticket(car, token, parkingLotIndex);
+                } else {
+                    errTicket.setErrMsg("This car has been parked");
+                    return errTicket;
+                }
+            }
+            //loop in last parkingLot ,but not have parking space
+            if (parkingLotIndex == parkingLotList.size()) {
+                errTicket.setErrMsg("Not enough position.");
+                return errTicket;
+            }
+            parkingLotIndex++;
+
+        }
+        return null;
     }
 
 
@@ -30,7 +85,7 @@ public class ParkingBoy {
                 parkingLot.setParkingLotSet(parkingLotSet);
                 return new Ticket(car, token);
             }
-        }else{
+        } else {
             errTicket.setErrMsg("Not enough position.");
             return errTicket;
         }
