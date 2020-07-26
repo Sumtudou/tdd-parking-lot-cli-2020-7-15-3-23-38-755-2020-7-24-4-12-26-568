@@ -4,24 +4,14 @@ import java.lang.reflect.Array;
 import java.util.*;
 
 public class ParkingBoy {
-
-    private ParkingLot parkingLot = null;
+    //private ParkingLot parkingLot = null;
     protected List<ParkingLot> parkingLotList;
-
-
-    public ParkingBoy(Integer maxSize) {
-        buildParkingLot(maxSize);
-    }
 
     public ParkingBoy(Integer[] maxSizeArr) {
         parkingLotList = new ArrayList<>();
         for (Integer maxSize : maxSizeArr) {
             parkingLotList.add(new ParkingLot(maxSize));
         }
-    }
-
-    public List<ParkingLot> getParkingLotList() {
-        return parkingLotList;
     }
 
     public void printParkingLotList() {
@@ -33,63 +23,25 @@ public class ParkingBoy {
         System.out.println("=================");
     }
 
-    public void setParkingLotList(List<ParkingLot> parkingLotList) {
-        this.parkingLotList = parkingLotList;
-    }
-
-    public ParkingLot buildParkingLot(Integer maxSize) {
-        this.parkingLot = new ParkingLot(maxSize);
-        return parkingLot;
-    }
-
-    public Ticket notCleverParkCar(Car car, String token) {
+    public Ticket parkCar(Car car, String token) {
         Ticket errTicket = new Ticket();
-        // Set<Car> parkingLotSet = parkingLot.getParkingLotSet();
         if (car == null || token == null)
             return null;
         Integer parkingLotIndex = 1;
         for (ParkingLot parkingLot : parkingLotList) {
-            //every ParkingLot's space SetItem
-            Set<Car> parkingLotSetItem = parkingLot.getParkingLotSet();
-            if (parkingLotSetItem.size() < parkingLot.getMaxSize()) {
-                if (!parkingLotSetItem.contains(car)) {
-                    //parkingLotSetItem.add(car);
-                    //parkingLot.setParkingLotSet(parkingLotSetItem);
-
-                    parkingLot.parkLotSetInACar(car);
+            if (parkingLot.haveSpaceLot()) {
+                if (parkingLot.parkLotSetInACar(car)) {
                     return new Ticket(car, token, parkingLotIndex);
                 } else {
                     errTicket.setErrMsg("This car has been parked");
                     return errTicket;
                 }
             }
-            //loop in last parkingLot ,but not have parking space
-            if (parkingLotIndex == parkingLotList.size()) {
-                errTicket.setErrMsg("Not enough position.");
-                return errTicket;
-            }
             parkingLotIndex++;
         }
-        return null;
-    }
-
-
-    public Ticket parkCar(Car car, String token) {
-        Ticket errTicket = new Ticket();
-        Set<Car> parkingLotSet = parkingLot.getParkingLotSet();
-        if (car == null || token == null)
-            return null;
-        if (parkingLotSet.size() < parkingLot.getMaxSize()) {
-            if (!parkingLotSet.contains(car)) {
-                parkingLotSet.add(car);
-                parkingLot.setParkingLotSet(parkingLotSet);
-                return new Ticket(car, token);
-            }
-        } else {
-            errTicket.setErrMsg("Not enough position.");
-            return errTicket;
-        }
-        return null;
+        //loop in last parkingLot ,but not have parking space
+        errTicket.setErrMsg("Not enough position.");
+        return errTicket;
     }
 
     public Car getOutCar(Ticket ticket) {
@@ -102,18 +54,17 @@ public class ParkingBoy {
             errorCar.setErrMsg("Unrecognized parking ticket.");
             return errorCar;
         }
-
         Car car = ticket.getCar();
-        Set<Car> parkingLotSet = parkingLot.getParkingLotSet();
-        if (parkingLotSet.contains(car)) {  //this car is in parkingLot
-            parkingLotSet.remove(car);
-            parkingLot.setParkingLotSet(parkingLotSet);
-            ticket.setUsed(true);
-            return car;
-        } else {
-            errorCar.setErrMsg("This car has been stolen");
-            return errorCar;
+        for (ParkingLot parkingLot : parkingLotList) {
+            if (parkingLot.parkLotSetOutACar(car)) {
+                ticket.setUsed(true);
+                return car;
+            }
         }
+        // all of ParkingLot can't find this car
+        errorCar.setErrMsg("This car has been stolen");
+        return errorCar;
     }
+
 
 }

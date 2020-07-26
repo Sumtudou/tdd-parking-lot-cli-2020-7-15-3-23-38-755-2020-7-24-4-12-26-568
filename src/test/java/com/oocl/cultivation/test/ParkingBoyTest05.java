@@ -23,18 +23,12 @@ class ParkingBoyTest05 {
         Car car5 = new Car("C005");
         Car car6 = new Car("C006");
         //when
-        Ticket ticket1 = superSmartParkingBoy.smartParkCar(car1, "T001");
-        superSmartParkingBoy.printParkingLotList();
-
-        Ticket ticket2 = superSmartParkingBoy.smartParkCar(car2, "T002");
-        superSmartParkingBoy.printParkingLotList();
-
-        Ticket ticket3 = superSmartParkingBoy.smartParkCar(car3, "T003");
-        superSmartParkingBoy.printParkingLotList();
-
-        Ticket ticket4 = superSmartParkingBoy.smartParkCar(car4, "T004");
-        Ticket ticket5 = superSmartParkingBoy.smartParkCar(car5, "T005");
-        Ticket ticket6 = superSmartParkingBoy.smartParkCar(car6, "T006");
+        Ticket ticket1 = superSmartParkingBoy.parkCar(car1, "T001");
+        Ticket ticket2 = superSmartParkingBoy.parkCar(car2, "T002");
+        Ticket ticket3 = superSmartParkingBoy.parkCar(car3, "T003");
+        Ticket ticket4 = superSmartParkingBoy.parkCar(car4, "T004");
+        Ticket ticket5 = superSmartParkingBoy.parkCar(car5, "T005");
+        Ticket ticket6 = superSmartParkingBoy.parkCar(car6, "T006");
         //then
 
         assertEquals(1, ticket1.getParkingLotId());

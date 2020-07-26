@@ -5,17 +5,14 @@ import java.util.Set;
 
 public class SmartParkingBoy extends ParkingBoy {
 
-    public SmartParkingBoy(Integer maxSize) {
-        super(maxSize);
-    }
 
     public SmartParkingBoy(Integer[] maxSizeArr) {
         super(maxSizeArr);
     }
 
-    public Ticket smartParkCar(Car car, String token) {
+    @Override
+    public Ticket parkCar(Car car, String token) {
         Ticket errTicket = new Ticket();
-        // Set<Car> parkingLotSet = parkingLot.getParkingLotSet();
         if (car == null || token == null)
             return null;
         int maxSpaceParkingLotIndex = getMaxEmptyParkingLotIndex();
@@ -23,15 +20,13 @@ public class SmartParkingBoy extends ParkingBoy {
             errTicket.setErrMsg("Not enough position.");
         } else {
             ParkingLot parkingLotItem = parkingLotList.get(maxSpaceParkingLotIndex);
-            parkingLotItem.getParkingLotSet().add(car);
-            parkingLotItem.setParkingLotSet(parkingLotItem.getParkingLotSet());
+            parkingLotItem.parkLotSetInACar(car);
             return new Ticket(car, token, maxSpaceParkingLotIndex + 1);
         }
         return null;
     }
 
-
-    public Integer getMaxEmptyParkingLotIndex() {
+    private Integer getMaxEmptyParkingLotIndex() {
         int maxSpaceNum = -1;
         int index = -1;
         for (int i = 0; i < parkingLotList.size(); i++) {
@@ -44,7 +39,6 @@ public class SmartParkingBoy extends ParkingBoy {
         if (maxSpaceNum == 0)
             return -1;
         return index;
-
     }
 
 }

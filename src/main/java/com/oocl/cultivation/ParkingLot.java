@@ -27,9 +27,27 @@ public class ParkingLot {
         this.maxSize = maxSize;
     }
 
-    public  Set<Car> parkLotSetInACar(Car car){
-        this.parkingLotSet.add(car);
-        return parkingLotSet;
+    public boolean parkLotSetInACar(Car car) {
+        if (!parkingLotSet.contains(car)) {
+            parkingLotSet.add(car);
+            return true;
+        }
+        return false;
     }
+
+
+    public boolean parkLotSetOutACar(Car car) {
+        if (parkingLotSet.contains(car)) {
+            parkingLotSet.remove(car);
+            return true;
+        }
+        return false;
+    }
+
+
+    public boolean haveSpaceLot() {
+        return parkingLotSet.size() < maxSize;
+    }
+
 
 }

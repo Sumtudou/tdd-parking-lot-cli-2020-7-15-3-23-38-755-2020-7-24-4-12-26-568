@@ -2,15 +2,12 @@ package com.oocl.cultivation;
 
 public class SuperSmartParkingBoy extends ParkingBoy{
 
-    public SuperSmartParkingBoy(Integer maxSize) {
-        super(maxSize);
-    }
 
     public SuperSmartParkingBoy(Integer[] maxSizeArr) {
         super(maxSizeArr);
     }
-
-    public Ticket smartParkCar(Car car, String token) {
+    @Override
+    public Ticket parkCar(Car car, String token) {
         Ticket errTicket = new Ticket();
         // Set<Car> parkingLotSet = parkingLot.getParkingLotSet();
         if (car == null || token == null)
@@ -20,14 +17,13 @@ public class SuperSmartParkingBoy extends ParkingBoy{
             errTicket.setErrMsg("Not enough position.");
         } else {
             ParkingLot parkingLotItem = parkingLotList.get(maxSpaceParkingLotIndex);
-            parkingLotItem.getParkingLotSet().add(car);
-            parkingLotItem.setParkingLotSet(parkingLotItem.getParkingLotSet());
+            parkingLotItem.parkLotSetInACar(car);
             return new Ticket(car, token, maxSpaceParkingLotIndex + 1);
         }
         return null;
     }
 
-    public Integer getMaxEmptyRateParkingLotIndex() {
+    private Integer getMaxEmptyRateParkingLotIndex() {
         double maxSpaceNumRate = -1;
         int index = -1;
         for (int i = 0; i < parkingLotList.size(); i++) {

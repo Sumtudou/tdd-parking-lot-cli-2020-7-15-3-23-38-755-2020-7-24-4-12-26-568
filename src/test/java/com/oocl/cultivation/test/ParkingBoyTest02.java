@@ -16,7 +16,7 @@ class ParkingBoyTest02 {
     void should_return_error_mssage_when_getCar_given_wrong_ticket() {
         //given
         Car car = new Car("C001");
-        ParkingBoy parkingBoy = new ParkingBoy(10);
+        ParkingBoy parkingBoy = new ParkingBoy(new Integer[]{10});
         Ticket ticket = parkingBoy.parkCar(car,"T001");
         Ticket wrongTicket = new Ticket();
         //when
@@ -28,7 +28,7 @@ class ParkingBoyTest02 {
     void should_return_error_mssage_when_getCar_given_used_ticket() {
         //given
         Car car = new Car("C001");
-        ParkingBoy parkingBoy = new ParkingBoy(10);
+        ParkingBoy parkingBoy = new ParkingBoy(new Integer[]{10});
         Ticket ticket = parkingBoy.parkCar(car,"T001");
         //when
         Car getsCar = parkingBoy.getOutCar(ticket);
@@ -42,7 +42,7 @@ class ParkingBoyTest02 {
     void should_return_give_me_ticket_when_getCar_given_null() {
         //given
         Car car = new Car("C001");
-        ParkingBoy parkingBoy = new ParkingBoy(10);
+        ParkingBoy parkingBoy = new ParkingBoy(new Integer[]{10});
         Ticket ticket = parkingBoy.parkCar(car,"T001");
         //when
         Car getsCar = parkingBoy.getOutCar(null);
@@ -66,7 +66,7 @@ class ParkingBoyTest02 {
         Car car10 = new Car("C010");
         Car car11 = new Car("C011");
 
-        ParkingBoy parkingBoy = new ParkingBoy(10);
+        ParkingBoy parkingBoy = new ParkingBoy(new Integer[]{10});
         //when
         Ticket ticket1 = parkingBoy.parkCar(car1,"T001");
         Ticket ticket2 = parkingBoy.parkCar(car2,"T002");
