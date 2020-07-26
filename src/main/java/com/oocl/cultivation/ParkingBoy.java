@@ -27,21 +27,24 @@ public class ParkingBoy {
         Ticket errTicket = new Ticket();
         if (car == null || token == null)
             return null;
-        Integer parkingLotIndex = 1;
-        for (ParkingLot parkingLot : parkingLotList) {
-            if (parkingLot.haveSpaceLot()) {
-                if (parkingLot.parkLotSetInACar(car)) {
-                    return new Ticket(car, token, parkingLotIndex);
-                } else {
-                    errTicket.setErrMsg("This car has been parked");
-                    return errTicket;
-                }
-            }
-            parkingLotIndex++;
+        int bestParkingLotIndex = getBestParkigLotIndex();
+        if (bestParkingLotIndex == -1) {
+            errTicket.setErrMsg("Not enough position.");
+            return errTicket;
+        } else {
+            ParkingLot parkingLotItem = parkingLotList.get(bestParkingLotIndex);
+            parkingLotItem.parkLotSetInACar(car);
+            return new Ticket(car, token, bestParkingLotIndex + 1);
         }
-        //loop in last parkingLot ,but not have parking space
-        errTicket.setErrMsg("Not enough position.");
-        return errTicket;
+    }
+
+    public int getBestParkigLotIndex() {
+        for (int i = 0; i < parkingLotList.size(); i++) {
+            if(parkingLotList.get(i).haveSpaceLot()){
+                return i;
+            }
+        }
+        return -1; // all of parkingLot  don't have park space
     }
 
     public Car getOutCar(Ticket ticket) {
