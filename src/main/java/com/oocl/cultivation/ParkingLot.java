@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class ParkingLot {
+    // TODO use Map<Ticket,Car> to replace Set<Car>
     private Set<Car> parkingLotSet = new HashSet<>();
     private Integer maxSize;
 

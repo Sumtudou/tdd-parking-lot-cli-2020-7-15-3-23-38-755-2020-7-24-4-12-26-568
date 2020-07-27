@@ -2,13 +2,9 @@ package com.oocl.cultivation.test;
 
 import com.oocl.cultivation.ParkingBoy;
 import com.oocl.cultivation.Car;
-import com.oocl.cultivation.ParkingLot;
 import com.oocl.cultivation.Ticket;
 
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -16,26 +12,26 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 class ParkingBoyTest {
 
     @Test
-    void should_return_ticket_when_parkCar_given_1car() {
+    void should_return_ticket_when_parkCar_given_1car() throws Exception {
         //given
         ParkingBoy parkingBoy = new ParkingBoy(new Integer[]{10});
-        Car car = new Car("C001");
+        Car car = new Car();
         //when
-        Ticket ticket = parkingBoy.parkCar(car,"T001");
+        Ticket ticket = parkingBoy.parkCar(car);
 
         //then
         assertNotNull(ticket);
     }
 
     @Test
-    void should_return_car_when_getCar_given_ticket() {
+    void should_return_car_when_getCar_given_ticket() throws Exception {
         //given
-        Car car = new Car("C001");
+        Car car = new Car();
         ParkingBoy parkingBoy = new ParkingBoy(new Integer[]{10});
-        Ticket ticket = parkingBoy.parkCar(car,"T001");
+        Ticket ticket = parkingBoy.parkCar(car);
 
         //when
-        Car getsCar = parkingBoy.getOutCar(ticket);
+        Car getsCar = parkingBoy.fetchCar(ticket);
         //then
         assertEquals(getsCar, car);
     }
@@ -118,23 +114,23 @@ class ParkingBoyTest {
 //    }
 
     @Test
-    void should_return_null_when_parkCar_given_parked_car() {
+    void should_return_null_when_parkCar_given_parked_car() throws Exception {
         //given
-        Car car = new Car("C001");
+        Car car = new Car();
         ParkingBoy parkingBoy = new ParkingBoy(new Integer[]{10});
         //when
-        Ticket ticket = parkingBoy.parkCar(car,"T001");
-        Ticket ticket1 = parkingBoy.parkCar(car,"T001");
+        Ticket ticket = parkingBoy.parkCar(car);
+        Ticket ticket1 = parkingBoy.parkCar(car);
         //then
         assertEquals("This car has been parked", ticket1.getErrMsg());
     }
 
     @Test
-    void should_return_null_when_parkCar_null_car() {
+    void should_return_null_when_parkCar_null_car() throws Exception {
         //given
         ParkingBoy parkingBoy = new ParkingBoy(new Integer[]{10});
         //when
-        Ticket ticket = parkingBoy.parkCar(null,"T001");
+        Ticket ticket = parkingBoy.parkCar(null);
 
         //then
         assertEquals(null, ticket);
